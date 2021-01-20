@@ -1,0 +1,93 @@
+﻿@model IEnumerable<ShoppingCart.Models.Product>
+
+@{
+    ViewData["Title"] = "Shop";
+}
+@{ 
+    string fi = "only";
+    string final = "Are Left!!";
+    string final1 = "Out of STOCK!!!";
+
+}
+<body style="background-color:burlywood">
+    <h1>Shop</h1>
+
+
+    <table class="table">
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    <h4>
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </h4>
+                    <img style="height:100px;width:150px;" src="~/Images/@item.FileImage" alt="@item.ProductName" />
+                </td>
+                @*<td>
+                        <b style="color:red">25</b>
+                        <img height="50px" src="data:image/png;base64,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" />
+
+                    </td>*@
+                <td>
+                    <div class="row">
+                        <div>
+                            <form class="" method="post" action="/Products/AddToCart">
+                                @Html.AntiForgeryToken()
+                                <div class="form-group">
+                                    <label>
+                                        Qty :
+                                    </label>
+                                    <select name="Qty" id="Qty" class="form-control">
+                                        :
+                                        @for (int i = 1; i <= item.ProductQuantity; i++)
+                                        {
+                                            <option value="@i">@i</option>
+                                        }
+                                    </select>
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <label>
+                                        Price :
+                                    </label>
+                                    @item.ProductPrice.ToString("00.00");
+                                    <input type="hidden" name="Price" value="@item.ProductPrice" />
+                                </div>
+                                <div class="form-group">
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <input type="submit" class="btn btn-success" value="Add To Cart" />
+                                        <input type="hidden" name="ProductId" value="@item.ProductId" />
+
+                                        <p style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-weight:20px; color:red">
+
+                                            @if (@item.ProductQuantity == 0)
+                                            {
+                                                @final1;
+                                            }
+                                            else
+                                            {
+                                                @fi;
+                                                @Html.DisplayFor(modelItem => item.ProductQuantity)
+
+                                                @final;
+                                            }
+
+
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <a href=" /Identiy/Account/Login" class="btn btn-warning">Login to Order</a>
+                                    }
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+</body>
